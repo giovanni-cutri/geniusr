@@ -10,8 +10,9 @@ get_lyrics <- function(session) {
     html_text(trim = TRUE)
 
   artist <-  session %>%
-    html_nodes(xpath = '//a[contains(@class, "HeaderArtistAndTracklistdesktop__")]') %>%
+    html_nodes(xpath = '//span[contains(@Class, "PortalTooltip__Container")]') %>%
     html_text(trim = TRUE)
+  artist <- artist[1]
 
   # ensure line breaks are preserved correctly
   xml_find_all(lyrics, ".//br") %>% xml_add_sibling("p", "\n")
